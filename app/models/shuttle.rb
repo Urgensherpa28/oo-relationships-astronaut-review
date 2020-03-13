@@ -12,10 +12,8 @@ def self.all
     @@all
 end
 
-def add_astronaut(astronaut, date)
-    if Astronaut.self.count+1 < self.capacity 
-        Astronaut.all << astronaut
-    end
+def add_astronaut(launch_date, astronaut)
+    Mission.new(launch_date, astronaut, self)
 end
 
 def shuttle_list
@@ -24,11 +22,11 @@ def shuttle_list
    end
 end
 
-
 def current_astronaut
     shuttle_list.map {|a| a.astronaut }
 end
 
-
-
+def self.find_by_model(string)
+    Shuttle.all.find {|a| a.model_number == string}
+end
 end
